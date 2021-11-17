@@ -2,7 +2,7 @@
 #include "my_mat.c"
 #include "my_mat.h"
 
-// testing
+// testing.
 int main()
 {
     char choice;
