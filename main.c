@@ -2,6 +2,7 @@
 #include "my_mat.c"
 #include "my_mat.h"
 
+//test
 int main()
 {
     char choice;
@@ -23,11 +24,11 @@ int main()
                 shortest_path();
                 break;
             }
-            case 'D':
-                break;
+        case 'D':
+            break;
         }
-           while (choice != 'D');
+
+    } while (choice != 'D');
 
     return 0;
-    }
 }
