@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "my_mat.h"
-//test
+
+// Global var
 int mat[SIZE][SIZE];
 
 int min(int a, int b)
@@ -23,46 +24,7 @@ int min(int a, int b)
     }
 }
 
-void scan_parameters()
-{
-    for (int i = 0; i < SIZE; i++)
-    {
-        for (int j = 0; j < SIZE; j++)
-        {
-            scanf("%d", &mat[i][j]);
-        }
-    }
-    find();
-}
-
-void shortest_path()
-{
-    int k, j;
-    scanf("%d%d", &k, &j);
-    if (mat[k][j] != 0)
-    {
-        printf("True\n");
-    }
-    else
-    {
-        printf("False\n");
-    }
-}
-
-void check_path()
-{
-    int x, y;
-    scanf("%d%d", &x, &y);
-    if (mat[x][y] == 0 || x == y)
-    {
-        printf("-1\n");
-    }
-    else
-    {
-        printf("%d\n", mat[x][y]);
-    }
-}
-
+// find the shortest path between two nodes
 void find()
 {
     for (int k = 0; k < SIZE; k++)
@@ -81,15 +43,57 @@ void find()
                 }
                 else
                 {
-                    int val = mat[i][k] + mat[k][j];
+                    int sum = mat[i][k] + mat[k][j];
                     if (mat[i][k] == 0 || mat[k][j] == 0)
                     {
-                        val = 0;
+                        sum = 0;
                     }
-                    mat[i][j] = min(mat[i][j], val);
+                    mat[i][j] = min(mat[i][j], sum);
                 }
             }
         }
     }
 }
 
+// func "A"
+void scan_parameters()
+{
+    for (int i = 0; i < SIZE; i++)
+    {
+        for (int j = 0; j < SIZE; j++)
+        {
+            scanf("%d", &mat[i][j]);
+        }
+    }
+    find();
+}
+
+// func "B"
+void check_path()
+{
+    int x, y;
+    scanf("%d%d", &x, &y);
+    if (mat[x][y] == 0 || x == y)
+    {
+        printf("-1\n");
+    }
+    else
+    {
+        printf("%d\n", mat[x][y]);
+    }
+}
+
+// func "C"
+void shortest_path()
+{
+    int k, j;
+    scanf("%d%d", &k, &j);
+    if (mat[k][j] != 0)
+    {
+        printf("True\n");
+    }
+    else
+    {
+        printf("False\n");
+    }
+}
