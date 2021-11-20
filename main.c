@@ -3,7 +3,7 @@
 
 int main()
 {
-    char choice = 1;
+    char choice;
     while (choice != 'D')
     {
         scanf(" %c", &choice);
