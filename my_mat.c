@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "my_mat.h"
-
+//test
 int mat[SIZE][SIZE];
 
 int min(int a, int b)
