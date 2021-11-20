@@ -1,64 +1,99 @@
 #include <stdio.h>
-#define SIZE 10 // size of the matrix
+#include "my_mat.h"
 
 int mat[SIZE][SIZE];
-int i, j;
 
 int min(int a, int b)
 {
-    if (a > b)
+    if (a == 0)
+    {
         return b;
-    else
+    }
+    if (b == 0)
+    {
         return a;
+    }
+    if (a == 0 && b == 0)
+    {
+        return 0;
+    }
+    if (a < b)
+    {
+        return a;
+    }
+    else
+    {
+        return b;
+    }
 }
 
-void find(int i, int j)
+void scan_parameters()
+{
+    for (int i = 0; i < SIZE; i++)
+    {
+        for (int j = 0; j < SIZE; j++)
+        {
+            scanf("%d", &mat[i][j]);
+        }
+    }
+    find();
+}
+
+void shortest_path()
+{
+    int k, j;
+    scanf("%d%d", &k, &j);
+    if (mat[k][j] != 0)
+    {
+        printf("True\n");
+    }
+    else
+    {
+        printf("False\n");
+    }
+}
+
+void check_path()
+{
+    int x, y;
+    scanf("%d%d", &x, &y);
+    if (mat[x][y] == 0 || x == y)
+    {
+        printf("-1\n");
+    }
+    else
+    {
+        printf("%d\n", mat[x][y]);
+    }
+}
+
+void find()
 {
     for (int k = 0; k < SIZE; k++)
     {
-        for (i = 0; i < SIZE; i++)
+        for (int i = 0; i < SIZE; i++)
         {
-            for (j = 0; j < SIZE; j++)
+            for (int j = 0; j < SIZE; j++)
             {
                 if (i == j)
-                    mat[i][j] = 0;
+                {
+                    mat[i][i] = 0;
+                }
+                else if (i == k || j == k)
+                {
+                    mat[i][j] = mat[i][j];
+                }
                 else
-                    mat[i][j] = min(mat[i][j], mat[i][k] + mat[k][j]);
+                {
+                    int val = mat[i][k] + mat[k][j];
+                    if (mat[i][k] == 0 || mat[k][j] == 0)
+                    {
+                        val = 0;
+                    }
+                    mat[i][j] = min(mat[i][j], val);
+                }
             }
         }
     }
 }
 
-void scan_parameters() // *1*
-{
-    int i, j;
-    for (i = 0; i < SIZE; i++)
-    {
-        for (j = 0; j < SIZE; j++)
-        {
-            scanf("%d", &(mat[i][j])); // save value in array.
-        }
-    }
-}
-
-void check_path() // *2*
-{
-    scanf("%d %d", &i, &j);
-    find(i, j);
-    int val = mat[i][j];
-    if (val != 0)
-        printf("True"); // there is a path betweem i --> j
-    else
-        printf("False");
-}
-
-void shortest_path() // *3*
-{
-    scanf("%d %d", &i, &j);
-    find(i, j);
-    int val = mat[i][j];
-    if (val != 0)
-        printf("%d", val); // there is a path betweem i --> j
-    else
-        printf("%d", -1); // there isn't a path  betweem i --> j
-}

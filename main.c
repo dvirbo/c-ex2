@@ -1,34 +1,31 @@
 #include <stdio.h>
-#include "my_mat.c"
 #include "my_mat.h"
 
-// testing.
 int main()
 {
-    char choice;
-    do
+    char choice = 1;
+    while (choice != 'D')
     {
-        if (scanf(" %c", &choice) == 1)
+        scanf(" %c", &choice);
+        switch (choice)
         {
-            switch (choice)
-            {
-            case 'A':
-                scan_parameters();
-                break;
+        case 'A':
+            scan_parameters();
+            break;
 
-            case 'B':
-                check_path();
-                break;
+        case 'B':
+            shortest_path();
+            break;
 
-            case 'C':
-                shortest_path();
-                break;
+        case 'C':
+            check_path();
+            break;
 
-            case 'D':
-                break;
-            }
+        case 'D':
+            break;
+        default:
+            break;
         }
-
-    } while (choice != 'D');
+    }
     return 0;
 }
